@@ -1,0 +1,28 @@
+<h4>Products model with title and desctiption / All the interaction will be taken in the single page and data will be presented based on groups</h4>
+<hr/>
+<h3>Updates: {{ message }} {% if message == '' %} * Nothing update here! {% endif %}</h3>
+<hr/>
+<h2>Product Registration</h2>
+<form action="/permissions/create" method="post">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter the title" value="" name="title"/>
+    <input type="'text" placeholder="Enter the description" value="" name="desc"/>
+    <button type="submit">Create</button>
+</form>
+<hr/>
+<ul>
+{% for product in products %}
+    <li>
+        <a href="{% url 'delete_product_path' product.id %}">Delete</a>
+        -
+        <span>
+            {{ product.title }}
+        </span>
+        -
+        <span>
+            {{ product.desc }}
+        </span>
+    </li>
+{% endfor %}
+</ul>
+<hr/>
